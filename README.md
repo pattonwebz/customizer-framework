@@ -3,6 +3,8 @@ A starter template for use with the WordPress Theme Customizer. At the current t
 
 Primarily this is a clean base class to start with a customizer implementation within a WordPress theme. It is built so it can either be modified directly or extended by a theme.
 
+You need to define all of your own settings, sections, panels and controls in exactly the same way that you would do inside other functions. This class doesn't have helper methods to make adding those any easier than the default WP methods.
+
 Some Features:
 
 * Contains separate methods for adding panels, sections, settings and controls.
