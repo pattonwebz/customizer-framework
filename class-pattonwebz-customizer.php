@@ -64,12 +64,22 @@ class PattonWebz_Customizer {
 	 *
 	 * @since  1.0.0
 	 * @access private
-	 * @return void
 	 */
 	private function __construct() {
+		// setup the class properties.
+		self::setup_properties();
 		// setup actions for the customizer class.
 		self::setup_actions();
-		// assumes directory will be /path/to/theme/inc/customizer/.
+	}
+
+	/**
+	 * Sets up some non static properties for the class.
+	 *
+	 * @since  1.0.0
+	 * @access private
+	 */
+	private function setup_properties() {
+		// This assumes directory will be /path/to/theme/inc/customizer/.
 		$this->customizer_root = trailingslashit( dirname( __FILE__ ) );
 		// TODO: get this directory url properly by matching against directory structure.
 		$this->customizer_uri = trailingslashit( get_template_directory_uri() ) . 'inc/customizer/';
@@ -197,7 +207,6 @@ class PattonWebz_Customizer {
 	 *
 	 * @since  1.0.0
 	 * @access public
-	 * @return void
 	 */
 	public function enqueue_control_scripts() {
 		wp_enqueue_script( 'pattonwebz-customize-controls-script', $this->customizer_uri . 'js/customize-controls.js', array( 'customize-controls' ) );
