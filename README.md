@@ -5,6 +5,8 @@ Primarily this is a clean base class to start with a customizer implementation w
 
 In it's present state it is probably better to modify the class directly for your own use than to extend it.
 
+You need to define all of your own settings, sections, panels and controls in exactly the same way that you would do inside other functions. This class doesn't have helper methods to make adding those any easier than the default WP methods.
+
 Some Features:
 
 * Contains separate methods for adding panels, sections, settings and controls.
