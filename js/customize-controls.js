@@ -1,3 +1,12 @@
+/**
+ * A script for handling theme customizer javascript actions.
+ *
+ * @licence GPLv2 or later
+ *
+ * @package PattonWebz_Customize
+ * @since 1.0.0
+ */
+
 ( function( api ) {
 
 	// Extends our custom "example-1" section.

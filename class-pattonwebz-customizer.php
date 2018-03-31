@@ -3,6 +3,8 @@
  * The main customizer class for the theme used to add all panels, sections,
  * settings and controls used in the theme.
  *
+ * @licence GPLv2 or later
+ *
  * @version 1.1.0
  *
  * @package PattonWebz_Customize

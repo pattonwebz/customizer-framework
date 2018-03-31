@@ -2,6 +2,8 @@
 /**
  * A final class extending the package base customizer class.
  *
+ * @licence GPLv2 or later
+ *
  * @package PattonWebz_Customize
  * @since 1.0.0
  */

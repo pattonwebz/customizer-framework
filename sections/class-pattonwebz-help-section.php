@@ -3,6 +3,8 @@
  * Class to add a section and it's supporting styles/scripts to output a button
  * and some text in a top level panel of the customizer.
  *
+ * @licence GPLv2 or later
+ *
  * @package PattonWebz_Customize
  * @since   1.0.0
  */
