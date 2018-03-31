@@ -3,26 +3,19 @@
  * The main customizer class for the theme used to add all panels, sections,
  * settings and controls used in the theme.
  *
+ * @version 1.1.0
+ *
  * @package PattonWebz_Customize
  * @since 1.0.0
  */
 
 /**
- * Singleton class for handling the theme's customizer integration.
+ * Base class for handling a theme's customizer integration.
  *
  * @since  1.0.0
  * @access public
  */
 class PattonWebz_Customizer {
-
-	/**
-	 * Holds an instance of the class.
-	 *
-	 * @since 1.0.0
-	 * @access public
-	 * @var stdObject
-	 */
-	private static $instance = null;
 
 	/**
 	 * The absolute directory to the customizer package.
@@ -140,7 +133,7 @@ class PattonWebz_Customizer {
 		<?php
 		// get the buffered content.
 		$description = ob_get_clean();
-		// start a holder array
+		// start a holder array.
 		$help_section_values = array(
 			'title'       => esc_html( wp_get_theme()->get( 'Name' ) ), // current theme name.
 			'text'        => esc_html__( 'Help and Support', 'pattonwebz' ),
@@ -150,7 +143,7 @@ class PattonWebz_Customizer {
 		);
 
 		// NOTE: You should filter in some custom values.
-		$help_section_values = apply_filters( 'best_reloaded_filter_upsell_values', $help_section_values );
+		$help_section_values = apply_filters( 'pattonwebz_filter_customizer_upsell_values', $help_section_values );
 
 		// Register the help section.
 		$wp_customize->add_section(
@@ -167,13 +160,30 @@ class PattonWebz_Customizer {
 	/**
 	 * A helper function to return default settings for the customizer items.
 	 *
+	 * @since  1.0.0
+	 * @access public
+	 *
+	 * @param string $field A string containing an individual field name to get.
+	 *
 	 * @return array an array of settings in key => value format.
 	 */
-	public static function setting_defaults() {
+	public static function setting_defaults( $field = '' ) {
 		$defaults = array(
 			'example-setting' => 'value for the example setting',
 		);
-		return apply_filters( 'pattonwebz_customize_filter_setting_defaults', $defaults );
+		$defaults = apply_filters( 'pattonwebz_customize_filter_setting_defaults', $defaults );
+
+		// if we got a specific field request...
+		if ( '' !== $field ) {
+			// check it exists in the defaults array.
+			if ( array_key_exists( $field, $defaults ) ) {
+				// requested field exists, return it's value.
+				return $defaults[ $field ];
+			}
+		}
+		// in all other cases we'll return the full array.
+		return $defaults;
+
 	}
 
 	/**
@@ -209,6 +219,7 @@ class PattonWebz_Customizer {
 	 * @access public
 	 */
 	public function enqueue_control_scripts() {
+		// these 2 styles and scripts are used to handle the custom 'help' or 'upsell' section only.
 		wp_enqueue_script( 'pattonwebz-customize-controls-script', $this->customizer_uri . 'js/customize-controls.js', array( 'customize-controls' ) );
 		wp_enqueue_style( 'pattonwebz-customize-controls-styles', $this->customizer_uri . 'css/customize-controls.css' );
 	}

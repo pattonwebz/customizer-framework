@@ -10,6 +10,7 @@
 /**
  * Get help section.
  *
+ * @since  1.0.0
  * @access public
  */
 class PattonWebz_Help_Section extends WP_Customize_Section {
