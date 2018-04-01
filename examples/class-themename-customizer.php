@@ -14,24 +14,6 @@
 final class Themename_Customizer extends PattonWebz_Customizer {
 
 	/**
-	 * Sets up some non static properties for the class.
-	 *
-	 * @since  1.0.0
-	 * @access private
-	 * @return void
-	 */
-	private function setup_properties() {
-		/**
-		 * NOTE: If this file is not included inside /path/to/theme/inc/customizer/
-		 * then you should override this method and set the root directory and uri.
-		 */
-		// Set the root directory where the customizer packages is found. Here is set to: /path/to/theme/inc/customizer/.
-		$this->customizer_root = trailingslashit( get_template_directory() ) . 'inc/customizer/';
-		// TODO: get this directory url properly by matching against directory structure.
-		$this->customizer_uri = trailingslashit( get_template_directory_uri() ) . 'inc/customizer/';
-	}
-
-	/**
 	 * Adds any panels to the customizer.
 	 *
 	 * @param object $wp_customize the cusomizer manager object.
@@ -76,7 +58,7 @@ final class Themename_Customizer extends PattonWebz_Customizer {
 		);
 
 		// NOTE: You should filter in some custom values.
-		$help_section_values = apply_filters( 'best_reloaded_filter_upsell_values', $help_section_values );
+		$help_section_values = apply_filters( 'prefix_filter_upsell_values', $help_section_values );
 
 		// Register the help section.
 		$wp_customize->add_section(
@@ -100,11 +82,11 @@ final class Themename_Customizer extends PattonWebz_Customizer {
 	public function settings( $wp_customize ) {
 		/**
 		 * NOTE: if you choose not to override the parents setting_defaults
-		 * method then the filter to add settings to the defautls array is:
-		 * `pattonwebz_customize_filter_setting_defaults`.
+		 * property at instantiation then the filter to add settings to the
+		 * defautls array is: `pattonwebz_customize_filter_setting_defaults`.
 		 */
-		// get the defaults from a function that should return a filtered array.
-		$defaults = self::setting_defaults();
+		// get the defaults from property.
+		$defaults = $this->setting_defaults;
 
 		// NOTE: Add some settings.
 	}
@@ -138,5 +120,7 @@ final class Themename_Customizer extends PattonWebz_Customizer {
 		 * additonal styles or scripts.
 		 */
 		parent::enqueue_control_scripts();
+
+		// NOTE: Add some stles and scripts.
 	}
 }

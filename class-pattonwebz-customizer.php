@@ -1,18 +1,16 @@
 <?php
 /**
- * The main customizer class for the theme used to add all panels, sections,
- * settings and controls used in the theme.
+ * The base customizer class used to define the interface for adding panels,
+ * sections, settings and controls to the WordPress Cusomizer.
  *
- * @licence GPLv2 or later
- *
- * @version 1.1.0
+ * @version 1.2.0
  *
  * @package PattonWebz_Customize
  * @since 1.0.0
  */
 
 /**
- * Base class for handling a theme's customizer integration.
+ * Base class for handling the a customizer integration.
  *
  * @since  1.0.0
  * @access public
@@ -20,64 +18,68 @@
 class PattonWebz_Customizer {
 
 	/**
-	 * The absolute directory to the customizer package.
+	 * Static propery to hold the customizer class' version.
+	 *
+	 * @since  1.2.0
+	 * @access public
+	 * @var    string
+	 */
+	public static $version = '1.3.0';
+	/**
+	 * The absolute directory to the base customizer package.
 	 *
 	 * @since  1.0.0
 	 * @access public
 	 * @var    string
 	 */
-	private $customizer_root = '';
+	public $customizer_root = '';
 
 	/**
-	 * The uri to the customizer package directory.
+	 * The uri to the base customizer package directory.
 	 *
 	 * @since  1.0.0
 	 * @access public
 	 * @var    string
 	 */
-	private $customizer_uri = '';
+	public $customizer_uri = '';
 
 	/**
-	 * Returns the instance of this class. There can be only 1 instance.
+	 * Holder for the themes customizer setting defaults.
 	 *
-	 * @since  1.0.0
+	 * @since  1.2.0
 	 * @access public
-	 * @return object
+	 * @var array
 	 */
-	public static function get_instance() {
-
-		// if an instance doesn't already exist then instanciate one.
-		if ( is_null( self::$instance ) ) {
-			self::$instance = new self();
-		}
-		// return an instance of the class.
-		return self::$instance;
-	}
+	public $setting_defaults = array();
 
 	/**
-	 * Constructor method for this class.
+	 * Constructor method for the base customizer integration class.
+	 *
+	 * You should pass all 3 expected paramiters otherwise semi-sane defaults
+	 * will be used that may not be approprite in some situations.
+	 *
+	 * @param string $dir      should be an absolute path to customizer directory.
+	 * @param string $uri      should be the uri to the customizer directory.
+	 * @param array  $settings key => values store of defaults that can be used in customizer settings.
 	 *
 	 * @since  1.0.0
 	 * @access private
+	 * @return void
 	 */
-	private function __construct() {
-		// setup the class properties.
-		self::setup_properties();
+	public function __construct( $dir = '', $uri = '', $settings = array() ) {
+
+		// set root to customizer and uri to it's path.
+		$this->customizer_root = $dir;
+		$this->customizer_uri  = $uri;
+
+		// hold themes settings.
+		$this->setting_defaults = $settings;
+
+		// include a class with some useful helper functions.
+		include_once $this->customizer_root . 'helpers/class-pattonwebz-customizer-helpers.php';
+
 		// setup actions for the customizer class.
-		self::setup_actions();
-	}
-
-	/**
-	 * Sets up some non static properties for the class.
-	 *
-	 * @since  1.0.0
-	 * @access private
-	 */
-	private function setup_properties() {
-		// This assumes directory will be /path/to/theme/inc/customizer/.
-		$this->customizer_root = trailingslashit( dirname( __FILE__ ) );
-		// TODO: get this directory url properly by matching against directory structure.
-		$this->customizer_uri = trailingslashit( get_template_directory_uri() ) . 'inc/customizer/';
+		$this::setup_actions();
 	}
 
 	/**
@@ -138,20 +140,6 @@ class PattonWebz_Customizer {
 	}
 
 	/**
-	 * Adds the settings, sets their defaults and sanitization callbacks.
-	 *
-	 * @since  1.0.0
-	 * @access public
-	 * @param object $wp_customize the WordPress customizer object.
-	 */
-	public function settings( $wp_customize ) {
-		// get the defaults from a function that should return a filtered array.
-		$defaults = self::setting_defaults();
-
-		// NOTE: Add some settings.
-	}
-
-	/**
 	 * Adds the controls for all the settings.
 	 *
 	 * @since  1.0.0
@@ -164,14 +152,16 @@ class PattonWebz_Customizer {
 	}
 
 	/**
-	 * Loads theme customizer CSS.
+	 * Loads theme customizer CSS and scripts.
 	 *
 	 * @since  1.0.0
 	 * @access public
 	 */
 	public function enqueue_control_scripts() {
-		// these 2 styles and scripts are used to handle the custom 'help' or 'upsell' section only.
-		wp_enqueue_script( 'pattonwebz-customize-controls-script', $this->customizer_uri . 'js/customize-controls.js', array( 'customize-controls' ) );
-		wp_enqueue_style( 'pattonwebz-customize-controls-styles', $this->customizer_uri . 'css/customize-controls.css' );
+
+		// NOTE: enqueue scripts and styles for use in customizer.
+		// The enqueues below include the script and styles for the custom 'help section'.
+		wp_enqueue_script( 'pattonwebz-customize-controls-script', $this->customizer_uri . 'js/customize-controls.js', array( 'customize-controls' ), self::$version );
+		wp_enqueue_style( 'pattonwebz-customize-controls-style', $this->customizer_uri . 'css/customize-controls.css', self::$version );
 	}
 }
