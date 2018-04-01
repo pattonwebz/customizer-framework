@@ -122,70 +122,19 @@ class PattonWebz_Customizer {
 	 */
 	public function sections( $wp_customize ) {
 
-		// Load custom sections.
-		require_once $this->customizer_root . 'sections/class-pattonwebz-help-section.php';
-
-		// Register custom section types.
-		$wp_customize->register_section_type( 'PattonWebz_Help_Section' );
-
-		// Start a buffer to hold some html content.
-		ob_start();
-		?>
-		<p><?php esc_html_e( 'You can contact me for support or customizations.', 'pattonwebz' ); ?></p>
-		<?php
-		// get the buffered content.
-		$description = ob_get_clean();
-		// start a holder array.
-		$help_section_values = array(
-			'title'       => esc_html( wp_get_theme()->get( 'Name' ) ), // current theme name.
-			'text'        => esc_html__( 'Help and Support', 'pattonwebz' ),
-			'url'         => esc_url( 'https://www.pattonwebz.com/contact/' ),
-			'description' => $description,
-			'priority'    => 1,
-		);
-
-		// NOTE: You should filter in some custom values.
-		$help_section_values = apply_filters( 'pattonwebz_filter_customizer_upsell_values', $help_section_values );
-
-		// Register the help section.
-		$wp_customize->add_section(
-			new PattonWebz_Help_Section(
-				$wp_customize,
-				'pattonwebz-customizer-section-help',
-				$help_section_values
-			)
-		);
-
 		// NOTE: Add some sections.
 	}
 
 	/**
 	 * A helper function to return default settings for the customizer items.
 	 *
-	 * @since  1.0.0
-	 * @access public
-	 *
-	 * @param string $field A string containing an individual field name to get.
-	 *
 	 * @return array an array of settings in key => value format.
 	 */
-	public static function setting_defaults( $field = '' ) {
+	public static function setting_defaults() {
 		$defaults = array(
 			'example-setting' => 'value for the example setting',
 		);
-		$defaults = apply_filters( 'pattonwebz_customize_filter_setting_defaults', $defaults );
-
-		// if we got a specific field request...
-		if ( '' !== $field ) {
-			// check it exists in the defaults array.
-			if ( array_key_exists( $field, $defaults ) ) {
-				// requested field exists, return it's value.
-				return $defaults[ $field ];
-			}
-		}
-		// in all other cases we'll return the full array.
-		return $defaults;
-
+		return apply_filters( 'pattonwebz_customize_filter_setting_defaults', $defaults );
 	}
 
 	/**

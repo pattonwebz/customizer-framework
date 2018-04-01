@@ -53,8 +53,40 @@ final class Themename_Customizer extends PattonWebz_Customizer {
 	 * @return void
 	 */
 	public function sections( $wp_customize ) {
-		// parent adds the 'help section' in this method.
-		parent::sections();
+		// Load custom sections.
+		require_once $this->customizer_root . 'sections/class-pattonwebz-help-section.php';
+
+		// Register custom section types.
+		$wp_customize->register_section_type( 'PattonWebz_Help_Section' );
+
+		// Start a buffer to hold some html content.
+		ob_start();
+		?>
+		<p><?php esc_html_e( 'You can contact me for support or customizations.', 'pattonwebz' ); ?></p>
+		<?php
+		// get the buffered content.
+		$description = ob_get_clean();
+		// start a holder array.
+		$help_section_values = array(
+			'title'       => esc_html( wp_get_theme()->get( 'Name' ) ), // current theme name.
+			'text'        => esc_html__( 'Help and Support', 'pattonwebz' ),
+			'url'         => esc_url( 'https://www.pattonwebz.com/contact/' ),
+			'description' => $description,
+			'priority'    => 1,
+		);
+
+		// NOTE: You should filter in some custom values.
+		$help_section_values = apply_filters( 'best_reloaded_filter_upsell_values', $help_section_values );
+
+		// Register the help section.
+		$wp_customize->add_section(
+			new PattonWebz_Help_Section(
+				$wp_customize,
+				'pattonwebz-customizer-section-help',
+				$help_section_values
+			)
+		);
+
 		// NOTE: Add some sections.
 	}
 
