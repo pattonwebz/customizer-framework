@@ -2,16 +2,20 @@
 /**
  * A final class extending the package base customizer class.
  *
+ * NOTE: THIS FILE IS PROBABLY NO LONGER CORRECT IMPLIMENTATION!
+ *
  * @licence GPLv2 or later
  *
  * @package PattonWebz_Customize
  * @since 1.0.0
  */
 
+namespace Themename;
+
 /**
  * This is an example class extending the base cusomizer class from the package.
  */
-final class Themename_Customizer extends PattonWebz_Customizer {
+final class Customizer extends PattonWebz\Customizer {
 
 	/**
 	 * Adds any panels to the customizer.
@@ -110,7 +114,7 @@ final class Themename_Customizer extends PattonWebz_Customizer {
 	 * @access public
 	 * @return void
 	 */
-	public function enqueue_control_scripts() {
+	public function enqueue_scripts() {
 		/**
 		 * If you overwrite this method to add your own or additional scripts
 		 * remember to either run the parent method or to enqueue the scripts
@@ -119,7 +123,7 @@ final class Themename_Customizer extends PattonWebz_Customizer {
 		 * NOTE: You do not need to override this method if you are not adding
 		 * additonal styles or scripts.
 		 */
-		parent::enqueue_control_scripts();
+		parent::enqueue_scripts();
 
 		// NOTE: Add some stles and scripts.
 	}

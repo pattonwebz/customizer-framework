@@ -3,11 +3,19 @@
  * Class to add a section and it's supporting styles/scripts to output a button
  * and some text in a top level panel of the customizer.
  *
- * @licence GPLv2 or later
+ * This class is inspired by, and incorporates code from, Justin Tadlock's
+ * TRT-Customizer-Pro: https://github.com/justintadlock/trt-customizer-pro.
+ * Used under GPLv2 licence - 2016 © Justin Tadlock.
  *
- * @package PattonWebz_Customize
- * @since   1.0.0
+ * @package   PattonWebz_Customize
+ * @since     1.0.0
+ * @author    William Patton <will@pattonwebz.com>
+ * @copyright Copyright (c) 2018, William Patton
+ * @link      https://github.com/pattonwebz/customizer-framework/
+ * @license   http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
  */
+
+namespace PattonWebz\Customizer;
 
 /**
  * Get help section.
@@ -15,7 +23,7 @@
  * @since  1.0.0
  * @access public
  */
-class PattonWebz_Help_Section extends WP_Customize_Section {
+class Help_Section extends \WP_Customize_Section {
 
 	/**
 	 * The type of customize section being rendered.

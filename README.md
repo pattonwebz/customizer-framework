@@ -43,3 +43,5 @@ A property is used here to hold an array with your settings to be used as defaul
 This package is licensed under GNU GPLv2 or later licence.
 
 Help Section contained in the package is based on and inspired by Justin Tadlock's Customizer Upsell Section - https://github.com/justintadlock/trt-customizer-pro - GPLv2 licence.
+
+Copyright 2018 © William Patton.
