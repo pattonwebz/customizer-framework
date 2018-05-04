@@ -1,10 +1,16 @@
 /**
  * A script for handling theme customizer javascript actions.
  *
- * @licence GPLv2 or later
+ * This script and incorporates code from Justin Tadlock's
+ * TRT-Customizer-Pro: https://github.com/justintadlock/trt-customizer-pro.
+ * Used under GPLv2 licence - 2016 © Justin Tadlock.
  *
- * @package PattonWebz_Customize
- * @since 1.0.0
+ * @package   PattonWebz_Customize
+ * @since     1.0.0
+ * @author    William Patton <will@pattonwebz.com>
+ * @copyright Copyright (c) 2018, William Patton
+ * @link      https://github.com/pattonwebz/customizer-framework/
+ * @license   http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
  */
 
 ( function( api ) {
