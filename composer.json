@@ -9,7 +9,10 @@
         }
     ],
 	"autoload": {
-	"psr-4": {
+		"files": [
+			"customizer.php"
+		],
+		"psr-4": {
 			"PattonWebz\\Customizer\\": "inc/"
 		}
 	},
