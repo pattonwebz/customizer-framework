@@ -1,0 +1,17 @@
+{
+    "name": "pattonwebz/customizer-framework",
+    "description": "A framework to help with adding items to the customizer for themes.",
+    "license": "GPLv2+",
+    "authors": [
+        {
+            "name": "William Patton",
+            "email": "will@pattonwebz.com"
+        }
+    ],
+	"autoload": {
+	"psr-4": {
+			"PattonWebz\\Customizer\\": "inc/"
+		}
+	},
+    "require": {}
+}

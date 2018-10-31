@@ -12,7 +12,7 @@
 
 namespace PattonWebz\Customizer;
 
-interface Customizer_Holder {
+interface CustomizerHolder {
 
 	/**
 	 * Constructor should setup properties to hold the passed properties.
