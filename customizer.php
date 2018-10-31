@@ -56,8 +56,6 @@ class Customizer implements CustomizerHolder {
 	 */
 	public function __construct( $settings = [] ) {
 
-		require_once __DIR__ . '/vendor/autoload.php';
-
 		// hold themes settings.
 		$this->setting_defaults = $settings;
 
