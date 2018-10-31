@@ -13,7 +13,7 @@
  * @license   http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
  */
 
-namespace PattonWebz\Customizer\;
+namespace PattonWebz\Customizer;
 
 /**
  * Base class for handling the a customizer integration.
@@ -55,6 +55,8 @@ class Customizer implements CustomizerHolder {
 	 * @access private
 	 */
 	public function __construct( $settings = [] ) {
+
+		require_once __DIR__ . '/vendor/autoload.php';
 
 		// hold themes settings.
 		$this->setting_defaults = $settings;
