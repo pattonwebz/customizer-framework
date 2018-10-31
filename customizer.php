@@ -62,6 +62,8 @@ class Customizer implements CustomizerHolder {
 		// self init the hook_actions method - optionally do this outside the class.
 		$this->hook_actions();
 
+		$this->add_helpers();
+
 	}
 
 	/**
@@ -80,6 +82,17 @@ class Customizer implements CustomizerHolder {
 
 		// Register scripts and styles for the controls.
 		add_action( 'customize_controls_enqueue_scripts', array( $this, 'enqueue_scripts' ), 0 );
+	}
+
+	/**
+	 * Add some helpers.
+	 *
+	 * @since  2.0.0
+	 * @access private
+	 */
+	private function add_helpers() {
+
+		$this->helpers = Helpers();
 	}
 
 	/**
