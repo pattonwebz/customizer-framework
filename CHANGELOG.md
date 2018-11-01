@@ -1,3 +1,7 @@
+#[2.0.0]
+- Make use of composer.
+- strip out examples and some extras to make this a real 'helper'.
+
 #[1.2.0]
 - Allow passing of customizer directory and uri.
 - Move setting_defaults out of class and can now be passed.

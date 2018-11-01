@@ -12,16 +12,14 @@
 
 namespace PattonWebz\Customizer;
 
-interface Customizer_Holder {
+interface CustomizerHolder {
 
 	/**
 	 * Constructor should setup properties to hold the passed properties.
 	 *
-	 * @param  string $dir      Should be directory to the customizer directory.
-	 * @param  string $uri      URI to the customizer directory.
-	 * @param  array  $settings Array of settings from theme that can be used to store default values to use when registering settings.
+	 * @param  array $settings Array of settings from theme that can be used to store default values to use when registering settings.
 	 */
-	public function __construct( $dir = '', $uri = '', $settings = array() );
+	public function __construct( $settings = array() );
 
 	/**
 	 * Adds any panels to the customizer.
