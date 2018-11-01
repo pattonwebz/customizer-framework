@@ -3,7 +3,7 @@
  * The base customizer class used to define the interface for adding panels,
  * sections, settings and controls to the WordPress Cusomizer.
  *
- * @version 2.0.0-alpha
+ * @version 2.0.0
  *
  * @package   PattonWebz_Customizer
  * @since     2.0.0
@@ -30,7 +30,7 @@ class Customizer implements CustomizerHolder {
 	 * @access public
 	 * @var    string
 	 */
-	public static $version = '2.0.0-alpha';
+	public static $version = '2.0.0';
 
 	/**
 	 * Holder for the setting array defaults.
