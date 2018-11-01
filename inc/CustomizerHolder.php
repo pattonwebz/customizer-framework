@@ -3,7 +3,7 @@
  * The base customizer interface for defining customizer options in a theme.
  *
  * @package   PattonWebz_Customize
- * @since     1.3.0
+ * @since     2.0.0
  * @author    William Patton <will@pattonwebz.com>
  * @copyright Copyright (c) 2018, William Patton
  * @link      https://github.com/pattonwebz/customizer-framework/
